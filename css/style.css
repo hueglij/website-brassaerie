@@ -1,5 +1,89 @@
 /* Custom styles beyond Tailwind utilities */
 
+/* ── Gig flip cards ───────────────────────────────────────── */
+
+.card-container {
+  perspective: 1200px;
+  cursor: pointer;
+  position: relative;
+  border-radius: 12px;
+  /* Mobile: fixed height so cards stack naturally */
+  height: 160px;
+}
+
+/* Desktop: cards fill the sidebar height equally (5 cards, no scroll) */
+@media (min-width: 1024px) {
+  .card-container {
+    flex: 1;
+    min-height: 0;
+    height: auto;
+  }
+}
+
+.card-inner {
+  /* absolute so it reliably fills the container whether height is fixed or flex */
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease;
+}
+
+/* Hover zoom — desktop only */
+@media (hover: hover) {
+  .card-container:hover .card-inner {
+    transform: scale(1.03);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+  }
+  .card-container.is-flipped:hover .card-inner {
+    transform: rotateY(180deg) scale(1.03);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+  }
+}
+
+.card-container.is-flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden; /* Safari */
+  border-radius: 12px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.card-front {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.card-back {
+  transform: rotateY(180deg);
+  background: #000;
+  color: #fff;
+}
+
+/* ── Gig card typography ──────────────────────────────────── */
+
+.gig-date  { color: #FF0000; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.02em; }
+.gig-name  { font-weight: 700; font-size: 0.95rem; line-height: 1.25; }
+.gig-venue { font-size: 0.75rem; color: #6b7280; }
+.gig-desc  { font-size: 0.7rem; color: #9ca3af; }
+
+.card-back .gig-hint {
+  font-size: 0.65rem;
+  opacity: 0.35;
+  text-align: right;
+}
+
 /* ── Member strip ─────────────────────────────────────────── */
 
 .member-col {
@@ -11,9 +95,8 @@
   cursor: pointer;
 }
 
-/* Alternate black / white column backgrounds */
-.member-col:nth-child(odd)  { background: #000000; }
-.member-col:nth-child(even) { background: #ffffff; border: 1px solid #000; }
+.member-col:nth-child(odd)  { background: #000; }
+.member-col:nth-child(even) { background: #fff; border: 1px solid #000; }
 
 .member-instrument {
   width: 100%;
@@ -22,8 +105,7 @@
   padding: 12px;
 }
 
-/* Odd columns: white instrument on black bg */
-.member-col:nth-child(odd)  .member-instrument { filter: invert(1); }
+.member-col:nth-child(odd) .member-instrument { filter: invert(1); }
 
 .member-portrait {
   max-height: 0;
@@ -39,23 +121,11 @@
   filter: grayscale(1) contrast(1.4);
 }
 
-/* Desktop hover: expand portrait below instrument */
 @media (hover: hover) {
-  .member-col:hover .member-portrait {
-    max-height: 400px;
-  }
+  .member-col:hover .member-portrait { max-height: 400px; }
 }
 
-/* Mobile tap: JS toggles .is-open class */
+/* Mobile tap: JS toggles .is-open */
 @media (hover: none) {
-  .member-col.is-open .member-portrait {
-    max-height: 400px;
-  }
+  .member-col.is-open .member-portrait { max-height: 400px; }
 }
-
-/* ── Gig list ─────────────────────────────────────────────── */
-
-.gig-date   { color: #FF0000; font-size: 0.75rem; font-weight: 700; }
-.gig-name   { font-weight: 700; font-size: 0.95rem; }
-.gig-venue  { font-size: 0.8rem; }
-.gig-desc   { font-size: 0.75rem; color: #555; }
