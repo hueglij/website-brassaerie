@@ -1,0 +1,19 @@
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Private planning & design docs (stay local only)
+BUILD_PLAN.md
+DESIGN.md
+assets/design/
+
+# Design working files — never publish
+assets/design/
