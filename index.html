@@ -25,7 +25,8 @@
   <div class="flex flex-col lg:flex-row min-h-screen">
 
     <!-- ===== LEFT COLUMN: upcoming gigs ===== -->
-    <aside class="lg:w-72 lg:flex-shrink-0 lg:sticky lg:top-0 lg:h-screen lg:overflow-y-auto
+    <!-- order-2 on mobile puts this below the logo; lg:order-1 restores left position on desktop -->
+    <aside class="order-2 lg:order-1 lg:w-72 lg:flex-shrink-0 lg:sticky lg:top-0 lg:h-screen lg:overflow-y-auto
                   border-r border-black p-6 flex flex-col">
 
       <h2 class="text-sm font-bold uppercase tracking-widest mb-6">Kommende Auftritte</h2>
@@ -47,7 +48,8 @@
     </aside>
 
     <!-- ===== RIGHT COLUMN: hero + CTA + member strip ===== -->
-    <main class="flex-1 flex flex-col">
+    <!-- order-1 on mobile puts this above the gig list; lg:order-2 restores right position on desktop -->
+    <main class="order-1 lg:order-2 flex-1 flex flex-col">
 
       <!-- Logo -->
       <header class="p-0">
