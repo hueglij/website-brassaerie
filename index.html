@@ -28,7 +28,7 @@
     <!-- ===== LEFT COLUMN: gig cards + Instagram (desktop) ===== -->
     <aside class="order-2 lg:order-1
                   lg:w-72 lg:flex-shrink-0
-                  lg:sticky lg:top-0 lg:h-screen lg:overflow-y-auto
+                  lg:sticky lg:top-0 lg:h-screen lg:overflow-hidden
                   border-b lg:border-b-0 lg:border-r border-black
                   p-6 flex flex-col">
 
@@ -37,11 +37,11 @@
       <!-- Flip cards rendered by js/gigs.js -->
       <div id="gig-cards" class="flex-1 flex flex-col gap-4"></div>
 
-      <!-- Instagram — only visible in sidebar on desktop -->
+      <!-- Instagram — centered at bottom of sidebar, desktop only -->
       <a href="https://www.instagram.com/brassaerie"
          target="_blank"
          rel="noopener noreferrer"
-         class="mt-8 hidden lg:inline-flex text-red-600 hover:text-red-700 transition-colors"
+         class="mt-8 hidden lg:flex lg:justify-center text-red-600 hover:text-red-700 transition-colors"
          aria-label="B:RASSäRIE auf Instagram">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
              fill="none" stroke="currentColor" stroke-width="1.8"
@@ -91,25 +91,29 @@
   </section>
 
   <!-- ===== FOOTER ===== -->
-  <footer class="border-t border-black px-8 py-5 flex items-center gap-6 text-xs">
-    <a href="impressum.html" class="hover:text-red-600">Impressum</a>
-    <a href="datenschutz.html" class="hover:text-red-600">Datenschutz</a>
+  <footer class="border-t border-black px-8 py-5 text-xs">
+    <div class="flex justify-center gap-6">
+      <a href="impressum.html" class="hover:text-red-600">Impressum</a>
+      <a href="datenschutz.html" class="hover:text-red-600">Datenschutz</a>
+    </div>
 
-    <!-- Instagram — only in footer on mobile (sidebar handles desktop) -->
-    <a href="https://www.instagram.com/brassaerie"
-       target="_blank"
-       rel="noopener noreferrer"
-       class="ml-auto lg:hidden text-red-600 hover:text-red-700 transition-colors"
-       aria-label="B:RASSäRIE auf Instagram">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-           fill="none" stroke="currentColor" stroke-width="1.8"
-           stroke-linecap="round" stroke-linejoin="round"
-           class="w-7 h-7" aria-hidden="true">
-        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-        <circle cx="12" cy="12" r="4.5"/>
-        <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/>
-      </svg>
-    </a>
+    <!-- Instagram — centered below links, mobile only (sidebar handles desktop) -->
+    <div class="flex justify-center mt-4 lg:hidden">
+      <a href="https://www.instagram.com/brassaerie"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="text-red-600 hover:text-red-700 transition-colors"
+         aria-label="B:RASSäRIE auf Instagram">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="1.8"
+             stroke-linecap="round" stroke-linejoin="round"
+             class="w-7 h-7" aria-hidden="true">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <circle cx="12" cy="12" r="4.5"/>
+          <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/>
+        </svg>
+      </a>
+    </div>
   </footer>
 
   <script src="js/config.js"></script>

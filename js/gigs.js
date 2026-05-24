@@ -11,7 +11,7 @@ fetch('data/gigs.json')
 
 function renderGigs(gigs) {
   const today = new Date().toISOString().slice(0, 10);
-  const upcoming = gigs.filter(g => g.date >= today);
+  const upcoming = gigs.filter(g => g.date >= today).slice(0, 5);
 
   if (upcoming.length === 0) {
     gigCards.innerHTML = '<p class="gig-desc col-span-full">Keine kommenden Auftritte.</p>';
