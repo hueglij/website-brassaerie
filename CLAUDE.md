@@ -18,8 +18,8 @@ All user-visible text in HTML → German only.
 |-------|------------------------------------|-------------|
 | A     | Skeleton, Tailwind, meta tags      | ✅ Done     |
 | B     | Flip card gig grid, member strip   | ✅ Done     |
-| C     | Booking form                       | ⬜ Next     |
-| D     | Legal pages (Impressum, Datenschutz)| ⬜ Pending |
+| C     | Booking form                       | ✅ Done     |
+| D     | Legal pages (Impressum, Datenschutz)| ⬜ Next    |
 | E     | Initial Cloudflare Pages deploy    | ⬜ Pending |
 | F     | Domain + email                     | ⬜ Pending |
 | G     | Web3Forms + hCaptcha               | ⬜ Pending |

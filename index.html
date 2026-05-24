@@ -67,7 +67,7 @@
 
       <!-- CTA -->
       <section class="flex justify-center py-10">
-        <a href="#booking"
+        <a href="#" id="booking-trigger"
            class="bg-red-600 text-white font-bold px-10 py-3 rounded-full
                   hover:bg-red-700 transition-colors text-lg">
           Jetzt buchen!
@@ -85,10 +85,147 @@
 
   </div>
 
-  <!-- ===== BOOKING FORM (Phase C) ===== -->
-  <section id="booking" class="border-t border-black p-8">
-    <p class="text-sm text-gray-400">Buchungsformular folgt in Phase C.</p>
-  </section>
+  <!-- ===== BOOKING MODAL ===== -->
+  <div id="booking-modal"
+       class="hidden fixed inset-0 z-50 overflow-y-auto"
+       role="dialog" aria-modal="true" aria-labelledby="booking-title">
+
+    <!-- Backdrop -->
+    <div id="booking-backdrop" class="fixed inset-0 bg-black/60"></div>
+
+    <!-- Scroll container — centers the panel, allows overflow on small screens -->
+    <div class="flex min-h-full items-center justify-center p-4">
+      <div class="relative bg-white w-full max-w-2xl border border-black">
+
+        <!-- Modal header -->
+        <div class="flex items-center justify-between px-8 py-5 border-b border-black">
+          <h2 id="booking-title" class="text-xs font-bold uppercase tracking-widest">Buchungsanfrage</h2>
+          <button id="booking-close"
+                  class="text-black hover:text-red-600 transition-colors text-2xl leading-none"
+                  aria-label="Schliessen">&#x2715;</button>
+        </div>
+
+        <!-- Form -->
+        <div class="px-8 py-8">
+          <form action="https://api.web3forms.com/submit" method="POST" class="space-y-6">
+
+            <!-- Web3Forms hidden fields — access_key filled in Phase G -->
+            <input type="hidden" name="access_key" value="">
+            <input type="hidden" name="subject" value="Neue Buchungsanfrage — B:RASSäRIE">
+            <input type="hidden" name="from_name" value="B:RASSäRIE Buchungsformular">
+            <!-- Honeypot: Web3Forms discards submissions where this is filled -->
+            <input type="text" name="botcheck" tabindex="-1" autocomplete="off" style="display:none">
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+              <div class="flex flex-col gap-1">
+                <label for="organizerName" class="text-xs font-bold uppercase tracking-wider">Name / Organisation <span class="text-red-600">*</span></label>
+                <input type="text" id="organizerName" name="organizerName" required
+                       class="border border-black px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-600">
+              </div>
+
+              <div class="flex flex-col gap-1">
+                <label for="email" class="text-xs font-bold uppercase tracking-wider">E-Mail <span class="text-red-600">*</span></label>
+                <input type="email" id="email" name="email" required
+                       class="border border-black px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-600">
+              </div>
+
+              <div class="flex flex-col gap-1">
+                <label for="eventDate" class="text-xs font-bold uppercase tracking-wider">Datum des Anlasses <span class="text-red-600">*</span></label>
+                <input type="date" id="eventDate" name="eventDate" required
+                       class="border border-black px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-600">
+              </div>
+
+              <div class="flex flex-col gap-1">
+                <label for="eventLocation" class="text-xs font-bold uppercase tracking-wider">Ort / Adresse <span class="text-red-600">*</span></label>
+                <input type="text" id="eventLocation" name="eventLocation" required
+                       class="border border-black px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-600">
+              </div>
+
+            </div>
+
+            <!-- Pill segmented control: real radios, styled via peer/peer-checked -->
+            <fieldset class="space-y-2">
+              <legend class="text-xs font-bold uppercase tracking-wider">Art des Anlasses <span class="text-red-600">*</span></legend>
+              <div class="flex gap-3 mt-2">
+                <label>
+                  <input type="radio" name="eventType" value="public" class="sr-only peer" required>
+                  <span class="block px-5 py-2 rounded-full border border-black text-sm font-medium cursor-pointer select-none
+                               transition-colors hover:opacity-80
+                               peer-checked:bg-black peer-checked:text-white">öffentlich</span>
+                </label>
+                <label>
+                  <input type="radio" name="eventType" value="private" class="sr-only peer">
+                  <span class="block px-5 py-2 rounded-full border border-black text-sm font-medium cursor-pointer select-none
+                               transition-colors hover:opacity-80
+                               peer-checked:bg-black peer-checked:text-white">privat</span>
+                </label>
+              </div>
+            </fieldset>
+
+            <!-- Ticketing section: revealed by booking.js when eventType = public -->
+            <div id="ticketing-section" class="hidden space-y-4">
+
+              <fieldset class="space-y-2">
+                <legend class="text-xs font-bold uppercase tracking-wider">Ticketpflichtig? <span class="text-red-600">*</span></legend>
+                <div class="flex gap-3 mt-2">
+                  <label>
+                    <input type="radio" name="ticketed" value="yes" class="sr-only peer">
+                    <span class="block px-5 py-2 rounded-full border border-black text-sm font-medium cursor-pointer select-none
+                                 transition-colors hover:opacity-80
+                                 peer-checked:bg-black peer-checked:text-white">Ja</span>
+                  </label>
+                  <label>
+                    <input type="radio" name="ticketed" value="no" class="sr-only peer">
+                    <span class="block px-5 py-2 rounded-full border border-black text-sm font-medium cursor-pointer select-none
+                                 transition-colors hover:opacity-80
+                                 peer-checked:bg-black peer-checked:text-white">Nein</span>
+                  </label>
+                </div>
+              </fieldset>
+
+              <!-- Ticket URL: revealed by booking.js when ticketed = yes -->
+              <div id="ticket-url-section" class="hidden space-y-1">
+                <label for="ticketUrl" class="text-xs font-bold uppercase tracking-wider">Ticket-Link <span class="text-red-600">*</span></label>
+                <input type="url" id="ticketUrl" name="ticketUrl"
+                       placeholder="https://..."
+                       class="w-full border border-black px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-600">
+              </div>
+
+            </div>
+
+            <div class="flex flex-col gap-1">
+              <label for="organizerWebsite" class="text-xs font-bold uppercase tracking-wider">
+                Website der Organisation
+                <span class="text-xs text-gray-400 font-normal normal-case">(optional)</span>
+              </label>
+              <input type="url" id="organizerWebsite" name="organizerWebsite"
+                     placeholder="https://..."
+                     class="border border-black px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-600">
+            </div>
+
+            <div class="flex flex-col gap-1">
+              <label for="message" class="text-xs font-bold uppercase tracking-wider">
+                Nachricht
+                <span class="text-xs text-gray-400 font-normal normal-case">(optional)</span>
+              </label>
+              <textarea id="message" name="message" rows="4"
+                        class="border border-black px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-600 resize-y"></textarea>
+            </div>
+
+            <div class="flex justify-end">
+              <button type="submit"
+                      class="bg-red-600 text-white font-bold px-10 py-3 rounded-full hover:bg-red-700 transition-colors">
+                Anfrage senden
+              </button>
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
 
   <!-- ===== FOOTER ===== -->
   <footer class="border-t border-black px-8 py-5 text-xs">
@@ -118,6 +255,7 @@
 
   <script src="js/config.js"></script>
   <script src="js/gigs.js"></script>
+  <script src="js/booking.js"></script>
 
 </body>
 </html>
