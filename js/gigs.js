@@ -63,7 +63,7 @@ function buildCard(gig) {
           </div>
           <div class="flex items-center justify-between mt-2">
             ${ticketLink}
-            <span class="text-xs text-gray-400 ml-auto">klicken zum Umdrehen ↩</span>
+            <span class="text-xs text-gray-300 ml-auto">umdrehen</span>
           </div>
         </div>
 
@@ -77,7 +77,7 @@ function buildCard(gig) {
             ${organizerLink}
             ${ticketLink}
           </div>
-          <p class="gig-hint">klicken zum Schliessen ↩</p>
+          <p class="gig-hint">schliessen</p>
         </div>
 
       </div>

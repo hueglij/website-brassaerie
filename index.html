@@ -18,41 +18,72 @@
 </head>
 <body class="bg-white text-black font-sans">
 
-  <!-- ===== LOGO / HEADER ===== -->
-  <header>
-    <img src="assets/images/logo.png"
-         alt="B:RASSäRIE Logo"
-         class="w-full block">
-  </header>
+  <!--
+    LAYOUT: two-column on desktop (lg+), single column on mobile.
+    DOM order: aside first (= left column on desktop).
+    On mobile: main gets order-1 (logo on top), aside gets order-2 (cards below).
+  -->
+  <div class="flex flex-col lg:flex-row min-h-screen">
 
-  <main>
+    <!-- ===== LEFT COLUMN: gig cards + Instagram (desktop) ===== -->
+    <aside class="order-2 lg:order-1
+                  lg:w-72 lg:flex-shrink-0
+                  lg:sticky lg:top-0 lg:h-screen lg:overflow-y-auto
+                  border-b lg:border-b-0 lg:border-r border-black
+                  p-6 flex flex-col">
 
-    <!-- ===== CTA ===== -->
-    <section class="flex justify-center py-10">
-      <a href="#booking"
-         class="bg-red-600 text-white font-bold px-10 py-3 rounded-full
-                hover:bg-red-700 transition-colors text-lg">
-        Jetzt buchen!
+      <h2 class="text-xs font-bold uppercase tracking-widest mb-5">Kommende Auftritte</h2>
+
+      <!-- Flip cards rendered by js/gigs.js -->
+      <div id="gig-cards" class="flex-1 flex flex-col gap-4"></div>
+
+      <!-- Instagram — only visible in sidebar on desktop -->
+      <a href="https://www.instagram.com/brassaerie"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="mt-8 hidden lg:inline-flex text-red-600 hover:text-red-700 transition-colors"
+         aria-label="B:RASSäRIE auf Instagram">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="1.8"
+             stroke-linecap="round" stroke-linejoin="round"
+             class="w-7 h-7" aria-hidden="true">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <circle cx="12" cy="12" r="4.5"/>
+          <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/>
+        </svg>
       </a>
-    </section>
 
-    <!-- ===== GIG CARDS ===== -->
-    <section class="px-6 pb-12">
-      <h2 class="text-sm font-bold uppercase tracking-widest mb-6">Kommende Auftritte</h2>
-      <div id="gig-cards"
-           class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- populated by js/gigs.js -->
-      </div>
-    </section>
+    </aside>
 
-    <!-- ===== MEMBER STRIP ===== -->
-    <section id="member-strip"
-             class="flex overflow-x-auto border-t border-black"
-             aria-label="Bandmitglieder">
-      <!-- populated in a later phase -->
-    </section>
+    <!-- ===== RIGHT COLUMN: logo + CTA + member strip ===== -->
+    <main class="order-1 lg:order-2 flex-1 flex flex-col">
 
-  </main>
+      <!-- Logo spans the full width of the right column -->
+      <header>
+        <img src="assets/images/logo.png"
+             alt="B:RASSäRIE Logo"
+             class="w-full block">
+      </header>
+
+      <!-- CTA -->
+      <section class="flex justify-center py-10">
+        <a href="#booking"
+           class="bg-red-600 text-white font-bold px-10 py-3 rounded-full
+                  hover:bg-red-700 transition-colors text-lg">
+          Jetzt buchen!
+        </a>
+      </section>
+
+      <!-- Member strip: 9 columns, instrument + portrait per member -->
+      <section id="member-strip"
+               class="flex overflow-x-auto border-t border-black mt-auto"
+               aria-label="Bandmitglieder">
+        <!-- populated in Phase B/C -->
+      </section>
+
+    </main>
+
+  </div>
 
   <!-- ===== BOOKING FORM (Phase C) ===== -->
   <section id="booking" class="border-t border-black p-8">
@@ -64,11 +95,11 @@
     <a href="impressum.html" class="hover:text-red-600">Impressum</a>
     <a href="datenschutz.html" class="hover:text-red-600">Datenschutz</a>
 
-    <!-- Instagram — inline SVG so currentColor works for red tint -->
+    <!-- Instagram — only in footer on mobile (sidebar handles desktop) -->
     <a href="https://www.instagram.com/brassaerie"
        target="_blank"
        rel="noopener noreferrer"
-       class="ml-auto text-red-600 hover:text-red-700 transition-colors"
+       class="ml-auto lg:hidden text-red-600 hover:text-red-700 transition-colors"
        aria-label="B:RASSäRIE auf Instagram">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
            fill="none" stroke="currentColor" stroke-width="1.8"
