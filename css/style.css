@@ -1,0 +1,61 @@
+/* Custom styles beyond Tailwind utilities */
+
+/* ── Member strip ─────────────────────────────────────────── */
+
+.member-col {
+  min-width: 100px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+/* Alternate black / white column backgrounds */
+.member-col:nth-child(odd)  { background: #000000; }
+.member-col:nth-child(even) { background: #ffffff; border: 1px solid #000; }
+
+.member-instrument {
+  width: 100%;
+  aspect-ratio: 1 / 1.4;
+  object-fit: contain;
+  padding: 12px;
+}
+
+/* Odd columns: white instrument on black bg */
+.member-col:nth-child(odd)  .member-instrument { filter: invert(1); }
+
+.member-portrait {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+.member-portrait img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(1) contrast(1.4);
+}
+
+/* Desktop hover: expand portrait below instrument */
+@media (hover: hover) {
+  .member-col:hover .member-portrait {
+    max-height: 400px;
+  }
+}
+
+/* Mobile tap: JS toggles .is-open class */
+@media (hover: none) {
+  .member-col.is-open .member-portrait {
+    max-height: 400px;
+  }
+}
+
+/* ── Gig list ─────────────────────────────────────────────── */
+
+.gig-date   { color: #FF0000; font-size: 0.75rem; font-weight: 700; }
+.gig-name   { font-weight: 700; font-size: 0.95rem; }
+.gig-venue  { font-size: 0.8rem; }
+.gig-desc   { font-size: 0.75rem; color: #555; }
