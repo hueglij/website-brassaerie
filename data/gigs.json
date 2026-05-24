@@ -1,0 +1,53 @@
+[
+  {
+    "id": "2026-01-24-wegenstetten",
+    "date": "2026-01-24",
+    "time": "20:00",
+    "city": "Wegenstetten",
+    "venue": "Turnhalle",
+    "eventName": "JaKo MGCW",
+    "description": "Live-Auftritt am Jahreskonzert der Musikgesellschaft",
+    "ticketed": false
+  },
+  {
+    "id": "2026-05-15-biel",
+    "date": "2026-05-15",
+    "time": "14:00",
+    "city": "Biel",
+    "venue": "Irgendwo, Biel",
+    "eventName": "EMF Biel",
+    "description": "Eidg. Musikfest Biel",
+    "ticketed": false
+  },
+  {
+    "id": "2026-06-01-mumpf",
+    "date": "2026-06-01",
+    "time": "19:00",
+    "city": "Mumpf",
+    "venue": "Flueh, Mumpf",
+    "eventName": "Flueh",
+    "description": "Spring festival brass entertainment",
+    "ticketed": false
+  },
+  {
+    "id": "2026-08-20-luzern",
+    "date": "2026-08-20",
+    "time": "20:00",
+    "city": "Luzern",
+    "venue": "KKL",
+    "eventName": "Sommerfest Luzern",
+    "description": "Live-Auftritt am jährlichen Stadtfest",
+    "ticketed": true,
+    "ticketUrl": "https://eventfrog.ch/placeholder",
+    "organizerUrl": "https://example.ch"
+  },
+  {
+    "id": "2026-09-12-basel",
+    "date": "2026-09-12",
+    "time": "18:30",
+    "city": "Basel",
+    "venue": "Kaserne Basel",
+    "eventName": "Herbstfest Basel",
+    "ticketed": false
+  }
+]

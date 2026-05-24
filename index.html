@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="B:RASSäRIE – Schweizer Brass-Band für Events, Festivals und private Anlässe. Jetzt buchen!">
+
+  <!-- Open Graph for Instagram / social preview -->
+  <meta property="og:title" content="B:RASSäRIE">
+  <meta property="og:description" content="Schweizer Brass-Band für Events, Festivals und private Anlässe.">
+  <meta property="og:image" content="assets/images/logo.png">
+  <meta property="og:type" content="website">
+
+  <title>B:RASSäRIE</title>
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Custom styles -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-white text-black font-sans">
+
+  <!-- ===== PAGE WRAPPER: two-column on desktop, single column on mobile ===== -->
+  <div class="flex flex-col lg:flex-row min-h-screen">
+
+    <!-- ===== LEFT COLUMN: upcoming gigs ===== -->
+    <aside class="lg:w-72 lg:flex-shrink-0 lg:sticky lg:top-0 lg:h-screen lg:overflow-y-auto
+                  border-r border-black p-6 flex flex-col">
+
+      <h2 class="text-sm font-bold uppercase tracking-widest mb-6">Kommende Auftritte</h2>
+
+      <!-- Gig list — rendered by js/gigs.js -->
+      <ul id="gig-list" class="flex-1 space-y-6">
+        <!-- populated by JavaScript -->
+      </ul>
+
+      <!-- Instagram link -->
+      <a href="https://www.instagram.com/brassaerie"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="mt-8 inline-block"
+         aria-label="B:RASSäRIE auf Instagram">
+        <img src="assets/icons/instagram.svg" alt="Instagram" class="w-7 h-7">
+      </a>
+
+    </aside>
+
+    <!-- ===== RIGHT COLUMN: hero + CTA + member strip ===== -->
+    <main class="flex-1 flex flex-col">
+
+      <!-- Logo -->
+      <header class="p-0">
+        <img src="assets/images/logo.png"
+             alt="B:RASSäRIE Logo"
+             class="w-full block">
+      </header>
+
+      <!-- CTA button -->
+      <section class="flex justify-center py-10">
+        <a href="#booking"
+           class="bg-red-600 text-white font-bold px-10 py-3 rounded-full
+                  hover:bg-red-700 transition-colors">
+          Jetzt buchen!
+        </a>
+      </section>
+
+      <!-- Member strip: 9 columns, instruments + portraits -->
+      <section id="member-strip"
+               class="flex overflow-x-auto mt-auto"
+               aria-label="Bandmitglieder">
+        <!-- populated by JavaScript (js/members.js) or static HTML in later phase -->
+      </section>
+
+    </main>
+
+  </div>
+
+  <!-- ===== BOOKING FORM (Phase C) ===== -->
+  <section id="booking" class="border-t border-black p-8">
+    <p class="text-gray-400 text-sm">Buchungsformular folgt in Phase C.</p>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="border-t border-black px-8 py-4 flex gap-6 text-xs">
+    <a href="impressum.html" class="hover:text-red-600">Impressum</a>
+    <a href="datenschutz.html" class="hover:text-red-600">Datenschutz</a>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/gigs.js"></script>
+
+</body>
+</html>
