@@ -22,7 +22,7 @@ All user-visible text in HTML → German only.
 | D     | Legal pages (Impressum, Datenschutz)| ✅ Done     |
 | E     | Initial Cloudflare Pages deploy    | ⬜ Pending |
 | F     | Domain + email                     | ⬜ Pending |
-| G     | Web3Forms + hCaptcha               | ⬜ Pending |
+| G     | Form.taxi live + hCaptcha          | ⬜ Pending |
 | H     | Analytics + polish                 | ⬜ Pending |
 | I     | Launch                             | ⬜ Pending |
 
@@ -112,9 +112,27 @@ Fields: `organizerName`, `email`, `eventDate`, `eventLocation`,
 
 - `main` = production — Cloudflare Pages auto-deploys on push
 - All code changes → feature branch → PR → merge to `main`
-- Branch naming: `feature/short-description` or `fix/short-description`
+- Branch naming: `feature/phase-X-description` or `fix/short-description`
 - Direct commits to `main` only for `data/gigs.json` content updates
 - Branch protection on `main`: require PR, block force pushes, restrict deletions
+- `gh` CLI is not installed — after pushing, give the user this URL to open the PR:
+  `https://github.com/hueglij/website-brassaerie/compare/main...{branch-name}`
+
+**When a phase or significant task is done:** commit → push → provide the PR URL.
+Do not wait to be asked. Include a short checklist in the PR body.
+
+## Cross-file consistency
+
+When any of the following change, update **all** listed files in the same commit — never just one:
+
+| What changed | Files to update |
+|---|---|
+| Phase status | `CLAUDE.md` build table + `BUILD_PLAN.md` phase header |
+| Form backend | `CLAUDE.md` + `index.html` (action URL) + `datenschutz.html` |
+| Legal address or contact email | `impressum.html` + `datenschutz.html` |
+| Member count or portrait/instrument images | `CLAUDE.md` (member strip + file structure) + `.gitignore` |
+| New HTML page added | All existing pages' `<footer>` nav links |
+| Band name spelling | Every file that references it |
 
 ## Operating principles
 
@@ -122,4 +140,6 @@ Fields: `organizerName`, `email`, `eventDate`, `eventLocation`,
 2. No comments unless the WHY is non-obvious
 3. No error handling for impossible scenarios — trust the data schema
 4. German text only in HTML user-visible content
-5. Keep BUILD_PLAN.md and DESIGN.md updated as decisions are made (both gitignored — local only)
+5. Keep `BUILD_PLAN.md` updated as decisions are made (gitignored — local only)
+6. When any project detail changes, apply the cross-file consistency rules above
+7. When a phase is complete, commit, push, and give the PR URL — unprompted
