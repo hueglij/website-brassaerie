@@ -66,7 +66,7 @@
       </header>
 
       <!-- CTA -->
-      <section class="flex justify-center py-10">
+      <section class="flex justify-center py-3">
         <a href="#" id="booking-trigger"
            class="bg-red-600 text-white font-bold px-10 py-3 rounded-full
                   hover:bg-red-700 transition-colors text-lg">
@@ -74,11 +74,107 @@
         </a>
       </section>
 
-      <!-- Member strip: 9 columns, instrument + portrait per member -->
+      <!-- Member strip: 9 columns, ~50vh tall, portrait slides up over instrument on hover/tap -->
       <section id="member-strip"
-               class="flex overflow-x-auto border-t border-black mt-auto"
+               class="h-[50vh] flex overflow-x-auto border-t border-black mt-auto"
                aria-label="Bandmitglieder">
-        <!-- populated in Phase B/C -->
+
+        <!-- Jan — Posaune -->
+        <div class="member-col has-portrait">
+          <div class="member-media">
+            <div class="member-slide member-instr-slide">
+              <img src="assets/images/instruments/trombone.png" alt="Posaune" class="member-instrument">
+            </div>
+            <div class="member-slide member-portrait-slide">
+              <img src="assets/images/portraits/jan.png" alt="Jan" class="member-portrait-img">
+            </div>
+          </div>
+        </div>
+
+        <!-- Lars — Posaune -->
+        <div class="member-col">
+          <div class="member-media">
+            <div class="member-slide member-instr-slide">
+              <img src="assets/images/instruments/trombone.png" alt="Posaune" class="member-instrument">
+            </div>
+          </div>
+        </div>
+
+        <!-- Samuel — Posaune -->
+        <div class="member-col">
+          <div class="member-media">
+            <div class="member-slide member-instr-slide">
+              <img src="assets/images/instruments/trombone.png" alt="Posaune" class="member-instrument">
+            </div>
+          </div>
+        </div>
+
+        <!-- Joshua — Euphonium -->
+        <div class="member-col has-portrait">
+          <div class="member-media">
+            <div class="member-slide member-instr-slide">
+              <img src="assets/images/instruments/euphonium.png" alt="Euphonium" class="member-instrument">
+            </div>
+            <div class="member-slide member-portrait-slide">
+              <img src="assets/images/portraits/joshua.png" alt="Joshua" class="member-portrait-img">
+            </div>
+          </div>
+        </div>
+
+        <!-- Marco — Sousaphone -->
+        <div class="member-col has-portrait">
+          <div class="member-media">
+            <div class="member-slide member-instr-slide">
+              <img src="assets/images/instruments/sousaphone.png" alt="Sousaphone" class="member-instrument">
+            </div>
+            <div class="member-slide member-portrait-slide">
+              <img src="assets/images/portraits/marco.png" alt="Marco" class="member-portrait-img">
+            </div>
+          </div>
+        </div>
+
+        <!-- Mike — Schlagzeug -->
+        <div class="member-col">
+          <div class="member-media">
+            <div class="member-slide member-instr-slide">
+              <img src="assets/images/instruments/drum.png" alt="Schlagzeug" class="member-instrument">
+            </div>
+          </div>
+        </div>
+
+        <!-- Denise — Trompete -->
+        <div class="member-col">
+          <div class="member-media">
+            <div class="member-slide member-instr-slide">
+              <img src="assets/images/instruments/trumpet.png" alt="Trompete" class="member-instrument">
+            </div>
+          </div>
+        </div>
+
+        <!-- Johannes — Trompete -->
+        <div class="member-col has-portrait">
+          <div class="member-media">
+            <div class="member-slide member-instr-slide">
+              <img src="assets/images/instruments/trumpet.png" alt="Trompete" class="member-instrument">
+            </div>
+            <div class="member-slide member-portrait-slide">
+              <img src="assets/images/portraits/johannes.png" alt="Johannes" class="member-portrait-img">
+            </div>
+          </div>
+        </div>
+
+        <!-- Fio — Trompete -->
+        <div class="member-col has-portrait">
+          <div class="member-media">
+            <div class="member-slide member-instr-slide">
+              <img src="assets/images/instruments/trumpet.png" alt="Trompete" class="member-instrument">
+            </div>
+            <div class="member-slide member-portrait-slide">
+              <img src="assets/images/portraits/fio.png" alt="Fio" class="member-portrait-img">
+            </div>
+          </div>
+        </div>
+
       </section>
 
     </main>
@@ -249,6 +345,7 @@
   <script src="js/config.js"></script>
   <script src="js/gigs.js"></script>
   <script src="js/booking.js"></script>
+  <script src="js/members.js"></script>
 
 </body>
 </html>
