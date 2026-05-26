@@ -19,7 +19,7 @@ All user-visible text in HTML → German only.
 | A     | Skeleton, Tailwind, meta tags      | ✅ Done     |
 | B     | Flip card gig grid, member strip   | ✅ Done     |
 | C     | Booking form                       | ✅ Done     |
-| D     | Legal pages (Impressum, Datenschutz)| ⬜ Next    |
+| D     | Legal pages (Impressum, Datenschutz)| ✅ Done     |
 | E     | Initial Cloudflare Pages deploy    | ⬜ Pending |
 | F     | Domain + email                     | ⬜ Pending |
 | G     | Web3Forms + hCaptcha               | ⬜ Pending |
@@ -37,7 +37,7 @@ All user-visible text in HTML → German only.
 │  Auftritte       │                                          │
 │                  │  [ Jetzt buchen! ]  ← red pill button    │
 │  [flip card]     │                                          │
-│  [flip card]     │  [member strip — 9 columns]              │
+│  [flip card]     │  [member strip — 8 columns]              │
 │  ...             │                                          │
 │                  │                                          │
 │  [Instagram]     │                                          │
@@ -62,11 +62,14 @@ index.html               main page
 impressum.html           legal imprint (Phase D)
 datenschutz.html         privacy notice (Phase D)
 css/style.css            custom CSS (flip cards, member strip)
-js/config.js             public API keys — Web3Forms + hCaptcha (Phase G)
+js/config.js             public API keys — hCaptcha (Phase G); Form.taxi key is in the action URL
 js/gigs.js               fetches data/gigs.json, renders flip cards
 js/booking.js            booking form logic (Phase C)
 data/gigs.json           gig list — edit to add/remove gigs
-assets/images/           logo.png, portrait-1.jpg … portrait-9.jpg
+assets/images/           logo.png
+assets/images/instruments/  trumpet.png, euphonium.png, sousaphone.png, drum.png, trombone.png
+assets/images/portraits/     joshua.png, johannes.png, marco.png, jan.png, fio.png
+                             (3 more portraits pending — total 8 members)
 assets/icons/            instagram.svg
 assets/design/           V4_Sketch.png (gitignored — local only)
 ```
@@ -86,10 +89,11 @@ Required: `id`, `date` (YYYY-MM-DD), `time` (HH:MM), `city`, `venue`, `eventName
 Optional: `description`, `ticketed` (bool), `ticketUrl`, `organizerUrl`
 - If `ticketed: true`, `ticketUrl` must be present (console.warn if missing)
 
-## Member strip (Phase B — HTML stub exists, not yet populated)
+## Member strip (HTML stub exists — to be populated once all 8 portraits arrive)
 
-9 members, 9 columns, alternating black/white backgrounds.
-Instrument order: trumpet ×3, euphonium, sousaphone, drum, trombone ×3
+8 members, 8 columns, alternating black/white backgrounds.
+Instrument images available: trumpet, euphonium, sousaphone, drum, trombone (reuse for multiples).
+Portraits available: joshua, johannes, marco, jan, fio — 3 more pending.
 - Top row: instrument image (always visible)
 - Bottom row: portrait (hidden, expands on hover/tap)
 - Desktop: `max-height` CSS transition on `:hover` via `@media (hover: hover)`
