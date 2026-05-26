@@ -37,7 +37,7 @@ All user-visible text in HTML → German only.
 │  Auftritte       │                                          │
 │                  │  [ Jetzt buchen! ]  ← red pill button    │
 │  [flip card]     │                                          │
-│  [flip card]     │  [member strip — 8 columns]              │
+│  [flip card]     │  [member strip — 9 columns]              │
 │  ...             │                                          │
 │                  │                                          │
 │  [Instagram]     │                                          │
@@ -69,7 +69,7 @@ data/gigs.json           gig list — edit to add/remove gigs
 assets/images/           logo.png
 assets/images/instruments/  trumpet.png, euphonium.png, sousaphone.png, drum.png, trombone.png
 assets/images/portraits/     joshua.png, johannes.png, marco.png, jan.png, fio.png
-                             (3 more portraits pending — total 8 members)
+                             (4 more pending: lars, samuel, mike, denise — total 9 members)
 assets/icons/            instagram.svg
 assets/design/           V4_Sketch.png (gitignored — local only)
 ```
@@ -89,15 +89,18 @@ Required: `id`, `date` (YYYY-MM-DD), `time` (HH:MM), `city`, `venue`, `eventName
 Optional: `description`, `ticketed` (bool), `ticketUrl`, `organizerUrl`
 - If `ticketed: true`, `ticketUrl` must be present (console.warn if missing)
 
-## Member strip (HTML stub exists — to be populated once all 8 portraits arrive)
+## Member strip
 
-8 members, 8 columns, alternating black/white backgrounds.
+9 members, 9 columns, alternating black/white backgrounds.
+Members (left → right): Jan (trombone), Lars (trombone), Samuel (trombone), Joshua (euphonium),
+Marco (sousaphone), Mike (drum), Denise (trumpet), Johannes (trumpet), Fio (trumpet).
 Instrument images available: trumpet, euphonium, sousaphone, drum, trombone (reuse for multiples).
-Portraits available: joshua, johannes, marco, jan, fio — 3 more pending.
-- Top row: instrument image (always visible)
-- Bottom row: portrait (hidden, expands on hover/tap)
-- Desktop: `max-height` CSS transition on `:hover` via `@media (hover: hover)`
-- Mobile: JS toggles `.is-open` class on tap via `@media (hover: none)`
+Portraits available: jan, joshua, marco, johannes, fio — 4 more pending (lars, samuel, mike, denise).
+- Top row: instrument image (always visible on all columns)
+- Bottom row: portrait (hidden, expands on hover/tap) — only on `.has-portrait` columns
+- Columns without portraits: instrument only, no cursor, no hover effect
+- Desktop: `max-height` CSS transition on `.has-portrait:hover` via `@media (hover: hover)`
+- Mobile: JS (`js/members.js`) toggles `.is-open` on `.has-portrait` tap via `@media (hover: none)`
 
 ## Booking form (Phase C — placeholder section exists in index.html)
 

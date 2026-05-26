@@ -87,45 +87,64 @@
 /* ── Member strip ─────────────────────────────────────────── */
 
 .member-col {
-  min-width: 100px;
-  flex-shrink: 0;
+  flex: 1;
+  min-width: 95px; /* allows horizontal scroll on very narrow mobile viewports */
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  cursor: pointer;
 }
+
+.member-col.has-portrait { cursor: pointer; }
 
 .member-col:nth-child(odd)  { background: #000; }
 .member-col:nth-child(even) { background: #fff; border: 1px solid #000; }
 
+/* Wrapper: fills column height, clips the sliding panels */
+.member-media {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Slide panels: fill the cell, handle the push animation */
+.member-slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.4s ease;
+}
+
+.member-portrait-slide {
+  transform: translateY(100%);
+}
+
+/* Instrument: 1/2 bounding box — much bigger than 1/1 square, still caps tall trombones */
 .member-instrument {
-  width: 100%;
-  aspect-ratio: 1 / 1.4;
+  width: 90%;
+  aspect-ratio: 1 / 2;
   object-fit: contain;
-  padding: 12px;
 }
 
 .member-col:nth-child(odd) .member-instrument { filter: invert(1); }
 
-.member-portrait {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease;
-}
-
-.member-portrait img {
+/* Portrait: full column width, no zoom — contain shows the whole person */
+.member-portrait-img {
   width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  display: block;
+  height: 100%;
+  object-fit: contain;
+  object-position: bottom center;
   filter: grayscale(1) contrast(1.4);
 }
 
 @media (hover: hover) {
-  .member-col:hover .member-portrait { max-height: 400px; }
+  .member-col.has-portrait:hover .member-instr-slide   { transform: translateY(-100%); }
+  .member-col.has-portrait:hover .member-portrait-slide { transform: translateY(0); }
 }
 
-/* Mobile tap: JS toggles .is-open */
+/* Mobile tap: JS toggles .is-open on .has-portrait columns */
 @media (hover: none) {
-  .member-col.is-open .member-portrait { max-height: 400px; }
+  .member-col.has-portrait.is-open .member-instr-slide   { transform: translateY(-100%); }
+  .member-col.has-portrait.is-open .member-portrait-slide { transform: translateY(0); }
 }
